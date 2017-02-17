@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NativeAndroid_32bitz.iml" filepath="$PROJECT_DIR$/NativeAndroid_32bitz.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app1.iml" filepath="$PROJECT_DIR$/app/app1.iml" />
     </modules>
   </component>
 </project>
