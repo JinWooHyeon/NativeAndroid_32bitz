@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/content_main"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_main"
+        tools:context="com.classiqo.nativeandroid_32bitz.MainActivity">
+
+    <ListView
+            android:id="@+id/lvPlayList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+        <TextView
+                android:id="@+id/tvCurrentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" | "/>
+
+        <TextView
+                android:id="@+id/tvDurationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"/>
+
+    </LinearLayout>
+
+    <SeekBar
+            android:id="@+id/sbMusicProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+        <Button
+                android:id="@+id/btRewind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|◀"/>
+
+        <Button
+                android:id="@+id/btPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▶"/>
+
+        <Button
+                android:id="@+id/btStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="■"/>
+
+        <Button
+                android:id="@+id/btFastForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▶|"/>
+
+    </LinearLayout>
+
+</LinearLayout>

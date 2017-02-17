@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NativeAndroid_32bitz</string>
+    <string name="rootURL">http://localhost:8080</string>
+</resources>
