@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setMusicURL(String musicName) {
-        if (musicName.equals("01 Magic")) musicURL = getText(R.string.rootURL) + musicName + ".wav";
+        if (musicName.equals("01 Magic")) musicURL = getText(R.string.rootURL) + "leebuyeong/" + musicName + ".wav";
         else musicURL = getText(R.string.rootURL) + musicName + ".mp3";
 
         try {
