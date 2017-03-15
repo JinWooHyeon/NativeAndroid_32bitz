@@ -1,4 +1,4 @@
-package com.classiqo.nativeandroid_32bitz;
+package com.classiqo.nativeandroid_32bitz.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import com.classiqo.nativeandroid_32bitz.R;
 
 import java.text.SimpleDateFormat;
 
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final SimpleDateFormat time = new SimpleDateFormat("mm:ss");
     static final String[] LIST_MENU = {
             "01 Magic",
+            "02 Watch what happens",
+            "03 What are you doing the rest of your life",
+            "04 I will wait for you",
             "01 - Don't Know Why",
             "01 - Riot",
             "10 - Well You Needn't",
@@ -53,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(this);
+//        fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(this);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, LIST_MENU);
 
@@ -140,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (mediaPlayer != null && mediaPlayer.getCurrentPosition() >= 5000)
                     mediaPlayer.seekTo(0);
                 break;
-            case R.id.fab:
+//            case R.id.fab:
             case R.id.btPlay:
                 playPause(v);
                 break;
@@ -165,13 +169,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btFastForward:
-                break;
+//                intent = new Intent(MainActivity.this, ScrollingActivity.class);
+//                intent.putExtra("PUT_MUSICNAME", musicName);
+//                startActivity(intent);
+//                break;
         }
     }
 
     private void setMusicURL(String musicName) {
-        if (musicName.equals("01 Magic")) musicURL = getText(R.string.rootURL) + "leebuyeong/" + musicName + ".wav";
-        else musicURL = getText(R.string.rootURL) + musicName + ".mp3";
+        if (musicName.equals("01 Magic") || musicName.equals("02 Watch what happens") || musicName.equals("03 What are you doing the rest of your life") || musicName.equals("04 I will wait for you"))
+            musicURL = getText(R.string.rootURL) + "leebuyoung/" + musicName + ".wav";
+        else
+            musicURL = getText(R.string.rootURL) + musicName + ".mp3";
 
         try {
             mediaPlayer.setDataSource(musicURL);
@@ -274,6 +283,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void loadSnackbar(int snackbarId, View v) {
         Snackbar snackbar;
         View snackView;
+
         switch (snackbarId) {
             case SNACKBAR_PLAY:
                 snackbar = Snackbar.make(v, musicName, Snackbar.LENGTH_INDEFINITE)

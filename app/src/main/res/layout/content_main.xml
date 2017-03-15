@@ -14,12 +14,17 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
-        tools:context="com.classiqo.nativeandroid_32bitz.MainActivity">
+        tools:context="com.classiqo.nativeandroid_32bitz.ui.MainActivity">
 
-    <ListView
-            android:id="@+id/lvPlayList"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="400dp"
+            android:fillViewport="true">
+        <ListView
+                android:id="@+id/lvPlayList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </ScrollView>
 
     <LinearLayout
             android:layout_width="match_parent"
