@@ -20,6 +20,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -122,8 +123,8 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         mSessionExtras = new Bundle();
 //        CarHelper.setSlotReservationFlags(mSessionExtras, true, true, true);
-//        WearHelper.setSlotReservationFlags(mSessionExtras, true, ture);
-//        SearHelper.setUseGackgroundFromTheme(mSessionExtras, true);
+//        WearHelper.setSlotReservationFlags(mSessionExtras, true, true);
+//        SearHelper.setUseBackgroundFromTheme(mSessionExtras, true);
         mSession.setExtras(mSessionExtras);
 
         mPlaybackManager.updatePlaybackState(null);
@@ -208,7 +209,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
     @Override
     public void onLoadChildren(@NonNull final String parentMediaId,
                                @NonNull final Result<List<MediaItem>> result) {
-        LogHelper.d(TAG, "OnLoadChildren: parendMediaId = ", parentMediaId);
+        LogHelper.d(TAG, "OnLoadChildren: parentMediaId = ", parentMediaId);
 
         if (MEDIA_ID_EMPTY_ROOT.equals(parentMediaId)) {
             result.sendResult(new ArrayList<MediaItem>());
@@ -254,7 +255,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
     }
 
 //    private void unregisterCarConnectionReceiver() {
-//        IntentFilter filter = new IntentFilter(CarHeler.ACTION_MEDIA_STATUE);
+//        IntentFilter filter = new IntentFilter(CarHelper.ACTION_MEDIA_STATUE);
 //        mCarConnectionReceiver = new BroadcastReceiver() {
 //            @Override
 //            public void onReceive(Context context, Intent intent) {

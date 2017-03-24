@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.classiqo.nativeandroid_32bitz;
 
 import android.content.Context;
@@ -107,7 +108,7 @@ public class PackageValidator {
         ArrayList<CallerInfo> validCallers = mValidCertificates.get(signature);
 
         if (validCallers == null) {
-            LogHelper.v(TAG, "Signature for caller ", callingPackage, " is not calid: \n"
+            LogHelper.v(TAG, "Signature for caller ", callingPackage, " is not valid: \n"
             , signature);
 
             if (mValidCertificates.isEmpty()) {

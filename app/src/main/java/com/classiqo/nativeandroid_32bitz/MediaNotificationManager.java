@@ -69,7 +69,6 @@ public class MediaNotificationManager extends BroadcastReceiver {
     private final PendingIntent mPlayIntent;
     private final PendingIntent mPreviousIntent;
     private final PendingIntent mNextIntent;
-
     private final PendingIntent mStopCastIntent;
 
     private final int mNotificationColor;
@@ -95,8 +94,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
         mNextIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
                 new Intent(ACTION_NEXT).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
         mStopCastIntent = PendingIntent.getBroadcast(mService, REQUEST_CODE,
-                new Intent(ACTION_STOP_CASTING).setPackage(pkg),
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                new Intent(ACTION_STOP_CASTING).setPackage(pkg), PendingIntent.FLAG_CANCEL_CURRENT);
 
         mNotificationManager.cancelAll();
     }

@@ -38,10 +38,10 @@ import java.util.Iterator;
 public class RemoteJSONSource implements MusicProviderSource {
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
-    protected static final String CATALOG_URL =
-//            "http://52.79.196.235:28017/32bitz/music/";
-            "http://storage.googleapis.com/automotive-media/music.json";
+    protected static final String CATALOG_URL = SetURL.getURL();
+//            "http://storage.googleapis.com/automotive-media/music.json";
 
+    private static final String JSON_ROWS = "rows";
     private static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
     private static final String JSON_ALBUM = "album";
@@ -52,21 +52,23 @@ public class RemoteJSONSource implements MusicProviderSource {
     private static final String JSON_TRACK_NUMBER = "trackNumber";
     private static final String JSON_TOTAL_TRACK_COUNT = "totalTrackCount";
     private static final String JSON_DURATION = "duration";
+    private static final String JSON_SITE = "site";
+    private static final String JSON_S3_BUCKET = "project32bitz";
 
     @Override
     public Iterator<MediaMetadataCompat> iterator() {
         try {
-            int slashPos = CATALOG_URL.lastIndexOf('/');
-            String path = CATALOG_URL.substring(0, slashPos + 1);
+//            int slashPos = CATALOG_URL.lastIndexOf('/');
+//            String path = CATALOG_URL.substring(0, slashPos + 1);
             JSONObject jsonObj = fetchJSONFromUrl(CATALOG_URL);
             ArrayList<MediaMetadataCompat> tracks = new ArrayList<>();
 
             if (jsonObj != null) {
-                JSONArray jsonTracks = jsonObj.getJSONArray(JSON_MUSIC);
+                JSONArray jsonTracks = jsonObj.getJSONArray(JSON_ROWS);
 
                 if (jsonTracks != null) {
                     for (int j = 0; j < jsonTracks.length(); j++) {
-                        tracks.add(buildFromJSON(jsonTracks.getJSONObject(j), path));
+                        tracks.add(buildFromJSON(jsonTracks.getJSONObject(j)/*, path*/));
                     }
                 }
             }
@@ -78,7 +80,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         }
     }
 
-    private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
+    private MediaMetadataCompat buildFromJSON(JSONObject json/*, String basePath*/) throws JSONException {
         String title = json.getString(JSON_TITLE);
         String album = json.getString(JSON_ALBUM);
         String artist = json.getString(JSON_ARTIST);
@@ -88,15 +90,29 @@ public class RemoteJSONSource implements MusicProviderSource {
         int trackNumber = json.getInt(JSON_TRACK_NUMBER);
         int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);
         int duration = json.getInt(JSON_DURATION) * 1000;
+        String site = json.getString(JSON_SITE);
 
         LogHelper.d(TAG, "Found music track", json);
 
         if (!source.startsWith("http")) {
-            source = basePath + source;
+//            source = basePath + source;
+            source = site +
+                    JSON_S3_BUCKET +
+                    "/" + JSON_MUSIC +
+                    "/" + artist +
+                    "/" + source;
         }
         if (!iconUrl.startsWith("http")) {
-            iconUrl = basePath + iconUrl;
+//            source = basePath + iconUrl;
+            iconUrl = site +
+                    JSON_S3_BUCKET +
+                    "/" + JSON_MUSIC +
+                    "/" + artist +
+                    "/" + album + ".jpg";
         }
+
+        LogHelper.i(TAG, source);
+        LogHelper.i(TAG, iconUrl);
         String id = String.valueOf(source.hashCode());
 
         //noinspection ResourceType
